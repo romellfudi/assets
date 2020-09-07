@@ -1,0 +1,89 @@
+# .github/workflows/android.yml
+# https://github.com/marketplace/actions/sonar-scanner
+# https://sonarcloud.io/
+
+name: Android CI
+
+# on: [push]
+on:
+  pull_request:
+    branches:
+      = 'master' 
+    #  - '*' 
+    #  - '!master' 
+    #  - '!release*'
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - 'master' 
+#      - '*' 
+#      - '!master' 
+#      - '!release*'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build App with Gradle
+      run: ./gradlew assembleDebug
+    - name: Jacoco Task
+      run: ./gradlew jacocoTestReport
+    - name: Testing library
+      run: ./gradlew lint testDebugUnitTest -p library
+    - name: Testing Coverage
+      run: ./gradlew createDebugCoverageReport
+    - name: Upload Testing
+      uses: actions/upload-artifact@v1
+      with:
+        name: library-test
+        path: library/build/reports/tests/testDebugUnitTest
+    - name: Upload library artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: library-aar
+        path: library/build/outputs/aar/library-debug.aar
+    - name: Upload APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
+    - name: Upload Assets
+      uses: marvinpinto/action-automatic-releases@latest 
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        title: "Latest Release"
+        files: |
+            library/build/outputs/aar/library-debug.aar
+            app/build/outputs/apk/debug/app-debug.apk
+    - name: Setup sonarqube
+      uses: warchant/setup-sonar-scanner@v1
+    - name: Run sonarqube
+      env:
+        # to get access to secrets.SONAR_TOKEN, provide GITHUB_TOKEN
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: sonar-scanner
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+           -Dsonar.organization=boosttag
+           -Dsonar.host.url=https://sonarcloud.io/
+           -Dsonar.projectKey=contactBoostTag_MyApplication
+           -Dsonar.sources=app/src/main/java
+           -Dsonar.tests=library/src/test/java
+           -Dsonar.coverage_path=library/build/reports/coverage/debug/report.xml
+           -Dsonar.coverage.jacoco.xmlReportPaths=library/build/reports/coverage/debug/report.xml
+           -Dsonar.android.lint.report=library/build/reports/lint-results.xml
+           -Dsonar.android.junit.reportsPath=library/build/reports/coverage/debug
+
+#     - name: show
+#       run: cat /opt/hostedtoolcache/sonar-scanner/4.2.0.1873/x64/sonar-scanner-4.2.0.1873-linux/conf/sonar-scanner.properties

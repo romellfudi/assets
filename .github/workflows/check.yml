@@ -1,0 +1,32 @@
+name: URL Health Check
+
+# on: [push]
+on:
+  pull_request:
+    branches:
+      = 'master' 
+    #  - '*' 
+    #  - '!master' 
+    #  - '!release*'
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - 'master' 
+#      - '*' 
+#      - '!master' 
+#      - '!release*'
+    paths-ignore:
+      - '**.md'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check the deployed service gh-page
+      uses: Jtalk/url-health-check-action@v1.3
+      with:
+        url: https://contactboosttag.github.io/MyApplication/
+        max-attempts: 3
+        retry-delay: 5s

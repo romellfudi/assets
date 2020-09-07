@@ -1,0 +1,40 @@
+name: Testing the Project
+
+# on: [push]
+on:
+  pull_request:
+    branches:
+      = 'master' 
+    #  - '*' 
+    #  - '!master' 
+    #  - '!release*'
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - 'master' 
+#      - '*' 
+#      - '!master' 
+#      - '!release*'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install Cookiecutter
+      run: |
+        python -m pip install --upgrade pip
+        pip install cookiecutter
+    - name: Generate project
+      run: |
+        cookiecutter gh:romellfudi/markdown  --no-input --overwrite-if-exists
+    - name: Testing project
+      run: |
+        python testing.py
