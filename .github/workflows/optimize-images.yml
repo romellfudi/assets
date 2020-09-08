@@ -1,6 +1,5 @@
 name: Optimize images
 
-# on: [push]
 on:
   pull_request:
     branches:
@@ -8,14 +7,6 @@ on:
     #  - '*' 
     #  - '!master' 
     #  - '!release*'
-    paths-ignore:
-      - '**.md'
-  push:
-    branches:
-      - 'master' 
-#      - '*' 
-#      - '!master' 
-#      - '!release*'
     paths-ignore:
       - '**.md'
 
