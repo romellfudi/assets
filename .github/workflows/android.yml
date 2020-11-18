@@ -34,6 +34,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Set NDK
+      run: echo "ndk.dir=${ANDROID_HOME}/ndk-bundle" > PAX/local.properties
     - name: Build App with Gradle
       run: ./gradlew assembleDebug
     - name: Jacoco Task
