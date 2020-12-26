@@ -7,6 +7,7 @@ on:
     #  - '*' 
     #  - '!master' 
     #  - '!release*'
+      # Use the paths-ignore filter when you only need to exclude path names
     paths:
       - '**.jpg'
       - '**.jpeg'
