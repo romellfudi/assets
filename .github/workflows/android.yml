@@ -8,17 +8,17 @@ name: Android CI
 on:
   pull_request:
     branches:
-      - 'master' 
     #  - '*' 
-    #  - '!master' 
+    #  - '!master'
+      - 'master'  
     #  - '!release*'
     paths-ignore:
       - '**.md'
   push:
     branches:
-      - 'master' 
 #      - '*' 
 #      - '!master' 
+      - 'master' 
 #      - '!release*'
     paths-ignore:
       - '**.md'
