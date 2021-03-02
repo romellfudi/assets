@@ -4,7 +4,7 @@ name: URL Health Check
 on:
   pull_request:
     branches:
-      = 'master' 
+      - 'master' 
     #  - '*' 
     #  - '!master' 
     #  - '!release*'
