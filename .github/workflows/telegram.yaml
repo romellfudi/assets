@@ -6,7 +6,7 @@ on:
 jobs:
 # https://github.com/appleboy/telegram-action
   build:
-    name: Build
+    name: Send a test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
