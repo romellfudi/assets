@@ -1,0 +1,22 @@
+name: conditional
+
+on:
+  pull_request:
+    branches:
+      - 'master' 
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./setup_server.sh
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./build_server.sh
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'unassigned' }}
+    steps:
+      - run: ./test_server.sh
