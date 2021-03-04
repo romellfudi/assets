@@ -3,18 +3,13 @@ name: Optimize images
 on:
   pull_request:
     branches:
-      = 'master' 
-    #  - '*' 
-    #  - '!master' 
-    #  - '!release*'
+      - 'master' 
       # Use the paths-ignore filter when you only need to exclude path names
     paths:
       - '**.jpg'
       - '**.jpeg'
       - '**.png'
       - '**.webp'
-    paths-ignore:
-      - '**.md'
 
 jobs:
   build:
