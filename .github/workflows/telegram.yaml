@@ -12,8 +12,8 @@ jobs:
     - uses: actions/checkout@master
     - name: send custom message with args
       uses: appleboy/telegram-action@master
+      env:
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }}
       with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          The ${{ github.event_name }} event triggered final step.Ω
+        args: The ${{ github.event_name }} event triggered first step.
