@@ -45,20 +45,29 @@ jobs:
     - name: Testing Coverage
       run: ./gradlew createDebugCoverageReport
     - name: Upload Testing
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: library-test
         path: library/build/reports/tests/testDebugUnitTest
     - name: Upload library artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: library-aar
         path: library/build/outputs/aar/library-debug.aar
     - name: Upload APK
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
+    - name: Upload Releases
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release-signed
+        path: |
+          app/build/outputs/apk/debug/app-debug.apk
+          app/build/outputs/bundle/release/app-release.aab
+          !path/**/*.tmp
+        if-no-files-found: error
     - name: Upload Assets
       uses: marvinpinto/action-automatic-releases@latest 
       with:
