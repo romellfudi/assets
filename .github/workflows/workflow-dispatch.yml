@@ -1,0 +1,16 @@
+name: Workflow Dispatch
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
