@@ -4,21 +4,21 @@
 
 name: Android CI
 
-# on: [push]
+# on: [push, pull_request, workflow_dispatch]
 on:
   pull_request:
     branches:
     #  - '*' 
-    #  - '!master'
-      - 'master'  
+    #  - '!main'
+      - 'main'  
     #  - '!release*'
     paths-ignore:
       - '**.md'
   push:
     branches:
 #      - '*' 
-#      - '!master' 
-      - 'master' 
+#      - '!main' 
+      - 'main' 
 #      - '!release*'
     paths-ignore:
       - '**.md'
