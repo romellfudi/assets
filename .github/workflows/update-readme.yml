@@ -1,0 +1,22 @@
+name: Activity Readme
+
+on:
+  # workflow_dispatch:
+  #   inputs:
+  #     version:
+  #       description: "Version to use for this update"
+  #       required: false
+  # schedule:
+  #   - cron: "0 12 * * 1" # Every Monday at noon
+  schedule:
+    - cron: '0 5 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jamesgeorge007/github-activity-readme@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
