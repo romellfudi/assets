@@ -18,8 +18,17 @@ on:
 #      - '!release*'
     paths-ignore:
       - '**.md'
-
+      
+env:
+  FORMAT_FILE: README.md
+  
 jobs:
+  test:
+    name: 'Validate README.md'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Markdown Format
+        run: build_clean.py ${FORMAT_FILE}
   build:
     runs-on: ubuntu-latest
     steps:
