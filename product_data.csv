@@ -1,0 +1,21 @@
+ProductID,Category,Supplier,StockQuantity,ProductName,Price
+1,Toys,Supplier_8,329,Barbie Doll,167.17
+2,Toys,Supplier_5,86,Lego Set,349.82
+3,Electronics,Supplier_1,525,Galaxy S21,445.37
+4,Clothing,Supplier_3,770,Adidas Hoodie,50.83
+5,Clothing,Supplier_10,638,Nike Air Max,167.33
+6,Clothing,Supplier_10,510,Nike Air Max,419.63
+7,Home,Supplier_6,940,Nespresso Vertuo,397.88
+8,Clothing,Supplier_10,963,Levi Jeans,63.29
+9,Electronics,Supplier_5,311,iPhone,232.41
+10,Clothing,Supplier_3,140,Nike Air Max,424.98
+11,Toys,Supplier_10,158,Nerf Gun,401.02
+12,Home,Supplier_5,136,Philips Hue,164.98
+13,Clothing,Supplier_9,338,Nike Air Max,78.33
+14,Clothing,Supplier_4,521,Levi Jeans,312.57
+15,Home,Supplier_5,833,Dyson V11,342.4
+16,Toys,Supplier_9,884,Lego Set,496.23
+17,Toys,Supplier_9,158,Lego Set,245.57
+18,Electronics,Supplier_9,992,Galaxy S21,248.19
+19,Electronics,Supplier_6,139,Galaxy S21,13.24
+20,Clothing,Supplier_9,872,Levi Jeans,274.14
